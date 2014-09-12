@@ -17,9 +17,7 @@
                               (dropActionChanged [this _])
                               (drop [this event] 
                                 (.acceptDrop event DnDConstants/ACTION_LINK)
-	                        (doto frame (.removeAll) 
-                                            (.add (Label. (str "dropped " (.. event (getTransferable) (getTransferData DataFlavor/stringFlavor))))) 
-                                            (.repaint))))))
+                                (.setText label (str "dropped " (.. event (getTransferable) (getTransferData DataFlavor/stringFlavor))))))))
 
 (def popup (doto (PopupMenu.) 
              (.add (doto (MenuItem. "Open") (.addActionListener (reify ActionListener (actionPerformed [this _ ] (.setVisible frame true))))))
